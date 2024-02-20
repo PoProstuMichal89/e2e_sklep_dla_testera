@@ -3,6 +3,8 @@ package pl.mmazur.tests;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import pl.mmazur.tests.pages.HomePage;
 import pl.mmazur.tests.pages.SearchResultPage;
 
@@ -32,6 +34,13 @@ public class SearchTest extends BaseTest {
     void should_return_products_by_search_name_tshirt() {
         SearchResultPage searchResultPage = homePage.getTopMenuAndSearchSection().searchForProducts("t-shirt");
         Assertions.assertThat(searchResultPage.getSearchResultSection().getProducts().size()).isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"mug", "frame", "t-shirt"})
+    void should_return_products_by_product_name(String productName) {
+        SearchResultPage searchResultPage = homePage.getTopMenuAndSearchSection().searchForProducts(productName);
+        Assertions.assertThat(searchResultPage.getSearchResultSection().getProducts().size()).isGreaterThan(0);
     }
 
 }
