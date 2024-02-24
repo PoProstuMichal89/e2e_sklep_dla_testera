@@ -1,4 +1,4 @@
-package pl.mmazur.tests.pages.sections;
+package pl.mmazur.pages.sections;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;

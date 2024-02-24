@@ -1,9 +1,8 @@
-package pl.mmazur.tests.pages;
+package pl.mmazur.pages;
 
 import com.microsoft.playwright.Page;
-import com.microsoft.playwright.options.LoadState;
 import lombok.Getter;
-import pl.mmazur.tests.pages.sections.searchResultPage.SearchResultSection;
+import pl.mmazur.pages.sections.searchResultPage.SearchResultSection;
 
 import static pl.mmazur.utils.PageUtils.waitForPageToLoad;
 

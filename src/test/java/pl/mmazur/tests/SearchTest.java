@@ -8,9 +8,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import pl.mmazur.tests.pages.HomePage;
-import pl.mmazur.tests.pages.SearchResultPage;
-import pl.mmazur.utils.PageUtils;
+import pl.mmazur.pages.HomePage;
+import pl.mmazur.pages.SearchResultPage;
+import pl.mmazur.tests.BaseTest;
 import pl.mmazur.utils.Properties;
 
 import java.util.stream.Stream;

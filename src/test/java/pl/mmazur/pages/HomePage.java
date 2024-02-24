@@ -1,9 +1,9 @@
-package pl.mmazur.tests.pages;
+package pl.mmazur.pages;
 
 import com.microsoft.playwright.Page;
 import lombok.Getter;
-import pl.mmazur.tests.pages.sections.TopMenuAndSearchSection;
-import pl.mmazur.tests.pages.sections.TopNavigationSection;
+import pl.mmazur.pages.sections.TopMenuAndSearchSection;
+import pl.mmazur.pages.sections.TopNavigationSection;
 
 public class HomePage {
 

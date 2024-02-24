@@ -2,6 +2,7 @@ package pl.mmazur.tests;
 
 import com.microsoft.playwright.*;
 import org.junit.jupiter.api.*;
+import pl.mmazur.factory.BrowserFactory;
 import pl.mmazur.utils.Properties;
 
 import java.nio.file.Paths;
@@ -10,20 +11,19 @@ import java.time.format.DateTimeFormatter;
 
 import static pl.mmazur.utils.StringUtils.removeRoundBrackets;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BaseTest {
     private static Playwright pw;
+
+    private BrowserFactory browserFactory;
     protected static Browser browser;
-
     protected BrowserContext browserContext;
-
     protected Page page;
 
     @BeforeAll
-    static void launchBrowser() {
-        pw = Playwright.create();
-        browser = pw.chromium().launch(new BrowserType.LaunchOptions()
-                .setHeadless(Boolean.parseBoolean(Properties.getProperty("browser.headless")))
-                .setSlowMo(Integer.parseInt(Properties.getProperty("browser.slow.mo"))));
+     void launchBrowser() {
+        browserFactory = new BrowserFactory();
+        browser = browserFactory.getBrowser();
     }
 
     @BeforeEach
@@ -55,8 +55,8 @@ public class BaseTest {
     }
 
     @AfterAll
-    static void closeBrowser() {
-        pw.close();
+    void closeBrowser() {
+        browserFactory.getPlaywright().close();
     }
 
     private boolean isTracingEnabled() {

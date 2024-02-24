@@ -1,4 +1,4 @@
-package pl.mmazur.tests.pages.sections.searchResultPage;
+package pl.mmazur.pages.sections.searchResultPage;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
