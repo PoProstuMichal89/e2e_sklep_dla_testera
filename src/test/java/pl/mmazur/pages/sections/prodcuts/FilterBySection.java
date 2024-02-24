@@ -2,8 +2,11 @@ package pl.mmazur.pages.sections.prodcuts;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import pl.mmazur.utils.StringUtils;
 
 import java.util.Arrays;
+
+import static pl.mmazur.utils.StringUtils.*;
 
 public class FilterBySection {
     private Locator leftSlider;
@@ -55,7 +58,7 @@ public class FilterBySection {
     public double getFromPrice() {
         return Arrays.asList(page.locator("#search_filters li p").innerText().split(" "))
                 .stream()
-                .map(p -> p.replaceAll("zł", ""))
+                .map(p -> p.replaceAll(toUTF8("zł"), ""))
                 .map(Double::parseDouble)
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException("Invalid price format"));
