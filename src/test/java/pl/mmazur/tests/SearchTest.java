@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import pl.mmazur.pages.HomePage;
 import pl.mmazur.pages.SearchResultPage;
-import pl.mmazur.tests.BaseTest;
 import pl.mmazur.utils.Properties;
 
 import java.util.stream.Stream;

@@ -13,7 +13,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
         <playwright.version>1.33.0</playwright.version>
-        <junit.version>5.7.0</junit.version>
+        <junit.version>5.10.1</junit.version>
         <assertj.version>3.24.2</assertj.version>
         <lombok.version>1.18.26</lombok.version>
         <slf4j.version>2.0.7</slf4j.version>
@@ -73,7 +73,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.10.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -87,8 +87,7 @@
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
                         <artifactId>junit-jupiter-engine</artifactId>
-                        <version>5.10.1</version>
-                        <scope>test</scope>
+                        <version>5.10.0</version>
                     </dependency>
 
                 </dependencies>
