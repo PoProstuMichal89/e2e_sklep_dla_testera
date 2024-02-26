@@ -13,8 +13,6 @@ public class FilterByPriceTest extends BaseTest {
     @BeforeEach
     void beforeEach() {
         homePage = new HomePage(page);
-        page.navigate(Properties.getProperty("app.url"));
-        homePage.getTopNavigationSection().setPageLanguageToEnglish();
     }
 
     @Test

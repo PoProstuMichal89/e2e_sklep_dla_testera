@@ -4,6 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import lombok.Getter;
 import pl.mmazur.dto.ProductDTO;
+import pl.mmazur.pages.BasePage;
 import pl.mmazur.pages.ProductsDetailsPage;
 import pl.mmazur.utils.StringUtils;
 
@@ -11,16 +12,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class SearchResultSection {
-
-    private Page page;
+public class SearchResultSection extends BasePage {
 
     @Getter
     private List<Locator> products;
 
     public SearchResultSection(Page page) {
-
-        this.page=page;
+        super(page);
         products = page.locator(".js-product").all();
     }
 

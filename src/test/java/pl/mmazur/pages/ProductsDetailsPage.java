@@ -7,12 +7,13 @@ import pl.mmazur.pages.sections.productDetailPage.ProductCustomizationSection;
 import pl.mmazur.utils.PageUtils;
 
 @Getter
-public class ProductsDetailsPage {
+public class ProductsDetailsPage extends BasePage {
 
     private ProductCustomizationSection prodcutCustomizationSection;
     private AddToCartSection addToCartSection;
 
     public ProductsDetailsPage(Page page) {
+        super(page);
         PageUtils.waitForPageToLoad(page);
         this.prodcutCustomizationSection = new ProductCustomizationSection(page);
         this.addToCartSection = new AddToCartSection(page);

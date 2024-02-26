@@ -2,21 +2,20 @@ package pl.mmazur.pages.sections.prodcuts;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import pl.mmazur.pages.BasePage;
 import pl.mmazur.utils.StringUtils;
 
 import java.util.Arrays;
 
 import static pl.mmazur.utils.StringUtils.*;
 
-public class FilterBySection {
+public class FilterBySection extends BasePage {
     private Locator leftSlider;
-
-    private Page page;
 
     private Locator priceLabel;
 
     public FilterBySection(Page page) {
-        this.page = page;
+        super(page);
         leftSlider = page.locator(".ui-slider-handle").first();
         priceLabel = page.locator("#search_filters li p");
     }

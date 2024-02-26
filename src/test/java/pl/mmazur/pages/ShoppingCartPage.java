@@ -6,11 +6,12 @@ import pl.mmazur.pages.sections.shopingCartPage.SummarySection;
 import pl.mmazur.utils.PageUtils;
 
 @Getter
-public class ShoppingCartPage {
+public class ShoppingCartPage extends BasePage {
 
     private SummarySection summarySection;
 
     public ShoppingCartPage(Page page) {
+        super(page);
         PageUtils.waitForPageToLoad(page);
         this.summarySection = new SummarySection(page);
     }

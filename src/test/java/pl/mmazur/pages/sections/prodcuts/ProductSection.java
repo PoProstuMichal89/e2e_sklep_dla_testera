@@ -3,6 +3,7 @@ package pl.mmazur.pages.sections.prodcuts;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import lombok.Getter;
+import pl.mmazur.pages.BasePage;
 import pl.mmazur.utils.StringUtils;
 
 import java.util.List;
@@ -10,14 +11,13 @@ import java.util.stream.Collectors;
 
 import static pl.mmazur.utils.StringUtils.*;
 
-public class ProductSection {
-
-    private Page page;
+public class ProductSection extends BasePage {
 
     @Getter
     private List<Locator> products;
 
     public ProductSection(Page page) {
+        super(page);
         this.page = page;
         this.products = page.locator(".js-product").all();
     }

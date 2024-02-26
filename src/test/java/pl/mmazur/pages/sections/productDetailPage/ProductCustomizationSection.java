@@ -2,16 +2,15 @@ package pl.mmazur.pages.sections.productDetailPage;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import pl.mmazur.pages.BasePage;
 
-public class ProductCustomizationSection {
-    private Page page;
+public class ProductCustomizationSection extends BasePage {
     private Locator customMessageInput;
     private Locator saveCustomizationButton;
-
     private Locator customizationLabel;
 
     public ProductCustomizationSection(Page page) {
-        this.page = page;
+        super(page);
         this.customMessageInput = page.locator("#field-textField1");
         this.saveCustomizationButton = page.locator("button[name=submitCustomizedData]");
         this.customizationLabel= page.locator(".customization-message");
