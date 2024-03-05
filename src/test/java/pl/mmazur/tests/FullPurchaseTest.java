@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.mmazur.pages.*;
 import pl.mmazur.pages.modals.AddToCartConfirmationModalPage;
+import pl.mmazur.pages.sections.orderDetalisPage.OrderAddressSection;
 import pl.mmazur.utils.Properties;
 
 public class FullPurchaseTest extends BaseTest {
@@ -25,7 +26,8 @@ public class FullPurchaseTest extends BaseTest {
         ShoppingCartPage shoppingCartPage = confirmationModal.clickProceedToCheckoutButton();
         OrderDetalisPage orderDetalisPage = shoppingCartPage.getSummarySection().proceedToCheckout();
 
-        orderDetalisPage.getPersonalInformation().enterPersonalInformation();
+        OrderAddressSection orderAddressSection = orderDetalisPage.getPersonalInformation().enterPersonalInformation();
+        orderAddressSection.enterAddress();
 
         page.waitForTimeout(2000);
 

@@ -3,6 +3,7 @@ package pl.mmazur.pages.sections.orderDetalisPage;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import pl.mmazur.pages.BasePage;
+import pl.mmazur.utils.EmailUtils;
 
 public class OrderPersonalInformationSection extends BasePage {
 
@@ -36,16 +37,18 @@ public class OrderPersonalInformationSection extends BasePage {
         this.continueButton = page.locator(customerForm + "button[name=continue]");
     }
 
-    public void enterPersonalInformation(){
+    public OrderAddressSection enterPersonalInformation(){
         selectSocialTitleMr()
                 .enterFirstName("John")
                 .enterLastName("Doe")
-                .enterEmail("mmazur@gmail.com")
+                .enterEmail(EmailUtils.generateEmail())
                 .enterPassword("fEc5wpgMWngnTj4A")
                 .enterDateOfBirth("01/01/1990")
                 .acceptTermsAndConditions()
                 .acceptCustomerPrivacy()
                 .clickContinueButton();
+
+        return new OrderAddressSection(page);
     }
 
     private OrderPersonalInformationSection selectSocialTitleMr() {
