@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import pl.mmazur.pages.*;
 import pl.mmazur.pages.modals.AddToCartConfirmationModalPage;
 import pl.mmazur.pages.sections.orderDetalisPage.OrderAddressSection;
+import pl.mmazur.pages.sections.orderDetalisPage.OrderPaymentSection;
 import pl.mmazur.pages.sections.orderDetalisPage.OrderShippingSection;
 import pl.mmazur.utils.Properties;
 
@@ -29,7 +30,8 @@ public class FullPurchaseTest extends BaseTest {
 
         OrderAddressSection orderAddressSection = orderDetalisPage.getPersonalInformation().enterPersonalInformation();
         OrderShippingSection shippingSection = orderAddressSection.enterAddress();
-        shippingSection.selectDeliveryMethod();
+        OrderPaymentSection paymentSection = shippingSection.selectDeliveryMethod();
+        paymentSection.placeOrder();
 
         page.waitForTimeout(2000);
 

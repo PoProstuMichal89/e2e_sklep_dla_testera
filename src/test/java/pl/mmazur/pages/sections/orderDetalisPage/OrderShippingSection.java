@@ -16,9 +16,11 @@ public class OrderShippingSection extends BasePage {
         this.continueButton = page.locator(shippingSection+ "button[name=confirmDeliveryOption]");
     }
 
-    public void selectDeliveryMethod(){
+    public OrderPaymentSection selectDeliveryMethod(){
         deliveryMyCarrier.check();
         continueButton.click();
+
+        return new OrderPaymentSection(page);
     }
 
 }
