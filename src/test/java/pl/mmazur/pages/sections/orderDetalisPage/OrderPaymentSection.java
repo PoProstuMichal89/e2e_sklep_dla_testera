@@ -3,6 +3,7 @@ package pl.mmazur.pages.sections.orderDetalisPage;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import pl.mmazur.pages.BasePage;
+import pl.mmazur.pages.OrderConfirmationPage;
 
 public class OrderPaymentSection extends BasePage {
 
@@ -19,9 +20,11 @@ public class OrderPaymentSection extends BasePage {
         this.placeOrderButton = page.locator(paymentSection+ "#payment-confirmation button");
     }
 
-    public void placeOrder(){
+    public OrderConfirmationPage placeOrder(){
         payByCashOnDelivery.check();
         termsAndConditions.check();
         placeOrderButton.click();
+
+        return new OrderConfirmationPage(page);
     }
 }

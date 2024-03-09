@@ -13,16 +13,18 @@ import pl.mmazur.utils.Properties;
 public class FullPurchaseTest extends BaseTest {
     private HomePage homePage;
 
+    private final String PRODUCT_NAME = "Customizable Mug";
+
     @BeforeEach
     void beofreEach() {
         homePage = new HomePage(page);
     }
 
     @Test
-    void should_purchase_selected_product_test() {
-        SearchResultPage searchResultPage = homePage.getTopMenuAndSearchSection().searchForProducts("Customizable Mug");
-        ProductsDetailsPage productsDetailsPage = searchResultPage.getSearchResultSection().viewProductDetails("Customizable Mug");
-        productsDetailsPage.getProdcutCustomizationSection().customizerProduct("Customizable Mug");
+    void should_purchase_selected_product_v1_test() {
+        SearchResultPage searchResultPage = homePage.getTopMenuAndSearchSection().searchForProducts(PRODUCT_NAME);
+        ProductsDetailsPage productsDetailsPage = searchResultPage.getSearchResultSection().viewProductDetails(PRODUCT_NAME);
+        productsDetailsPage.getProdcutCustomizationSection().customizerProduct(PRODUCT_NAME);
         AddToCartConfirmationModalPage confirmationModal = productsDetailsPage.getAddToCartSection().addProductToCart();
         Assertions.assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
         ShoppingCartPage shoppingCartPage = confirmationModal.clickProceedToCheckoutButton();
@@ -31,9 +33,33 @@ public class FullPurchaseTest extends BaseTest {
         OrderAddressSection orderAddressSection = orderDetalisPage.getPersonalInformation().enterPersonalInformation();
         OrderShippingSection shippingSection = orderAddressSection.enterAddress();
         OrderPaymentSection paymentSection = shippingSection.selectDeliveryMethod();
-        paymentSection.placeOrder();
+        OrderConfirmationPage confirmationPage = paymentSection.placeOrder();
+        Assertions.assertThat(confirmationPage.getOrderConfirmationDetalisSection()
+                .getConfirmationTitle()).containsIgnoringCase("Your order is confirmed");
 
         page.waitForTimeout(2000);
+
+
+    }
+
+    @Test
+    void should_purchase_selected_product_v2_test() {
+        SearchResultPage searchResultPage = homePage.getTopMenuAndSearchSection().searchForProducts(PRODUCT_NAME);
+//        ProductsDetailsPage productsDetailsPage = searchResultPage.getSearchResultSection().viewProductDetails(PRODUCT_NAME);
+//        productsDetailsPage.getProdcutCustomizationSection().customizerProduct(PRODUCT_NAME);
+//        AddToCartConfirmationModalPage confirmationModal = productsDetailsPage.getAddToCartSection().addProductToCart();
+//        Assertions.assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
+//        ShoppingCartPage shoppingCartPage = confirmationModal.clickProceedToCheckoutButton();
+//        OrderDetalisPage orderDetalisPage = shoppingCartPage.getSummarySection().proceedToCheckout();
+//
+//        OrderAddressSection orderAddressSection = orderDetalisPage.getPersonalInformation().enterPersonalInformation();
+//        OrderShippingSection shippingSection = orderAddressSection.enterAddress();
+//        OrderPaymentSection paymentSection = shippingSection.selectDeliveryMethod();
+//        OrderConfirmationPage confirmationPage = paymentSection.placeOrder();
+//        Assertions.assertThat(confirmationPage.getOrderConfirmationDetalisSection()
+//                .getConfirmationTitle()).containsIgnoringCase("Your order is confirmed");
+//
+//        page.waitForTimeout(2000);
 
 
     }
