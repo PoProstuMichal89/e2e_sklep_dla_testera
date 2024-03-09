@@ -16,5 +16,9 @@ public class ShoppingCartPage extends BasePage {
         this.summarySection = new SummarySection(page);
     }
 
+    public OrderDetalisPage proceedToCheckoutOnShoppingCartPage() {
+        return summarySection.proceedToCheckout();
+    }
+
 
 }

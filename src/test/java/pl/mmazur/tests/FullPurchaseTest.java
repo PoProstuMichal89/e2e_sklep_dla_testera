@@ -8,7 +8,8 @@ import pl.mmazur.pages.modals.AddToCartConfirmationModalPage;
 import pl.mmazur.pages.sections.orderDetalisPage.OrderAddressSection;
 import pl.mmazur.pages.sections.orderDetalisPage.OrderPaymentSection;
 import pl.mmazur.pages.sections.orderDetalisPage.OrderShippingSection;
-import pl.mmazur.utils.Properties;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class FullPurchaseTest extends BaseTest {
     private HomePage homePage;
@@ -26,15 +27,15 @@ public class FullPurchaseTest extends BaseTest {
         ProductsDetailsPage productsDetailsPage = searchResultPage.getSearchResultSection().viewProductDetails(PRODUCT_NAME);
         productsDetailsPage.getProdcutCustomizationSection().customizerProduct(PRODUCT_NAME);
         AddToCartConfirmationModalPage confirmationModal = productsDetailsPage.getAddToCartSection().addProductToCart();
-        Assertions.assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
-        ShoppingCartPage shoppingCartPage = confirmationModal.clickProceedToCheckoutButton();
+        assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
+        ShoppingCartPage shoppingCartPage = confirmationModal.proceedToCheckoutOnModal();
         OrderDetalisPage orderDetalisPage = shoppingCartPage.getSummarySection().proceedToCheckout();
 
         OrderAddressSection orderAddressSection = orderDetalisPage.getPersonalInformation().enterPersonalInformation();
         OrderShippingSection shippingSection = orderAddressSection.enterAddress();
         OrderPaymentSection paymentSection = shippingSection.selectDeliveryMethod();
         OrderConfirmationPage confirmationPage = paymentSection.placeOrder();
-        Assertions.assertThat(confirmationPage.getOrderConfirmationDetalisSection()
+        assertThat(confirmationPage.getOrderConfirmationDetalisSection()
                 .getConfirmationTitle()).containsIgnoringCase("Your order is confirmed");
 
         page.waitForTimeout(2000);
@@ -44,22 +45,24 @@ public class FullPurchaseTest extends BaseTest {
 
     @Test
     void should_purchase_selected_product_v2_test() {
-        SearchResultPage searchResultPage = homePage.getTopMenuAndSearchSection().searchForProducts(PRODUCT_NAME);
-//        ProductsDetailsPage productsDetailsPage = searchResultPage.getSearchResultSection().viewProductDetails(PRODUCT_NAME);
-//        productsDetailsPage.getProdcutCustomizationSection().customizerProduct(PRODUCT_NAME);
-//        AddToCartConfirmationModalPage confirmationModal = productsDetailsPage.getAddToCartSection().addProductToCart();
-//        Assertions.assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
-//        ShoppingCartPage shoppingCartPage = confirmationModal.clickProceedToCheckoutButton();
-//        OrderDetalisPage orderDetalisPage = shoppingCartPage.getSummarySection().proceedToCheckout();
-//
-//        OrderAddressSection orderAddressSection = orderDetalisPage.getPersonalInformation().enterPersonalInformation();
-//        OrderShippingSection shippingSection = orderAddressSection.enterAddress();
-//        OrderPaymentSection paymentSection = shippingSection.selectDeliveryMethod();
-//        OrderConfirmationPage confirmationPage = paymentSection.placeOrder();
-//        Assertions.assertThat(confirmationPage.getOrderConfirmationDetalisSection()
-//                .getConfirmationTitle()).containsIgnoringCase("Your order is confirmed");
-//
-//        page.waitForTimeout(2000);
+        AddToCartConfirmationModalPage confirmationModal =
+                homePage
+                        .searchForProduct(PRODUCT_NAME)
+                        .viewProductDetails(PRODUCT_NAME)
+                        .customizeProduct(PRODUCT_NAME)
+                        .addToCart();
+        assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
+
+        OrderConfirmationPage confirmationPage =
+                confirmationModal
+                        .proceedToCheckoutOnModal()
+                        .proceedToCheckoutOnShoppingCartPage()
+                        .enterOrderDetails();
+
+        Assertions.assertThat(confirmationPage.getOrderConfirmationDetalisSection()
+                .getConfirmationTitle()).containsIgnoringCase("Your order is confirmed");
+
+        page.waitForTimeout(2000);
 
 
     }

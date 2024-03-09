@@ -16,4 +16,8 @@ public class SearchResultPage extends BasePage {
         waitForPageToLoad(page);
         this.searchResultSection = new SearchResultSection(page);
     }
+
+    public ProductsDetailsPage viewProductDetails(String productName) {
+        return getSearchResultSection().viewProductDetails(productName);
+    }
 }

@@ -3,9 +3,11 @@ package pl.mmazur.pages.sections;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
+import lombok.Getter;
 import pl.mmazur.pages.ArtPage;
 import pl.mmazur.pages.BasePage;
 import pl.mmazur.pages.SearchResultPage;
+
 
 public class TopMenuAndSearchSection extends BasePage {
     private Locator searchInput;
