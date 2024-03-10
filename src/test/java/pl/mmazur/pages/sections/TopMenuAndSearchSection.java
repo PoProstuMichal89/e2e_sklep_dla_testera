@@ -8,7 +8,7 @@ import pl.mmazur.pages.ArtPage;
 import pl.mmazur.pages.BasePage;
 import pl.mmazur.pages.SearchResultPage;
 
-
+@Getter
 public class TopMenuAndSearchSection extends BasePage {
     private Locator searchInput;
 
@@ -17,7 +17,7 @@ public class TopMenuAndSearchSection extends BasePage {
     public TopMenuAndSearchSection(Page page) {
         super(page);
         this.searchInput = page.locator("input[name='s']");
-        this.artLink=page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Art").setExact(true));
+        this.artLink =page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Art").setExact(true));
     }
 
     public SearchResultPage searchForProducts(String productName) {
