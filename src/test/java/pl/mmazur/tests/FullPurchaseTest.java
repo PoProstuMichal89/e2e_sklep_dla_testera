@@ -43,28 +43,25 @@ public class FullPurchaseTest extends BaseTest {
 
     }
 
-//    @Test
-//    void should_purchase_selected_product_v2_test() {
-//        AddToCartConfirmationModalPage confirmationModal =
-//                homePage
-//                        .searchForProduct(PRODUCT_NAME)
-//                        .viewProductDetails(PRODUCT_NAME)
-//                        .customizeProduct(PRODUCT_NAME)
-//                        .addToCart();
-//        assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
-//
-//        OrderConfirmationPage confirmationPage =
-//                confirmationModal
-//                        .proceedToCheckoutOnModal()
-//                        .proceedToCheckoutOnShoppingCartPage()
-//                        .enterOrderDetails();
-//
-//        Assertions.assertThat(confirmationPage.getOrderConfirmationDetalisSection()
-//                .getConfirmationTitle()).containsIgnoringCase("Your order is confirmed");
+    @Test
+    void should_purchase_selected_product_v2_test() {
+        AddToCartConfirmationModalPage confirmationModal =
+                homePage
+                        .searchForProduct(PRODUCT_NAME)
+                        .viewProductDetails(PRODUCT_NAME)
+                        .customizeProduct(PRODUCT_NAME)
+                        .addToCart();
+        assertThat(confirmationModal.getConfirmationLMessage()).contains("Product successfully added to your shopping cart");
 
-//        page.waitForTimeout(2000);
-//
-//
-//    }
+        OrderConfirmationPage confirmationPage =
+                confirmationModal
+                        .proceedToCheckoutOnModal()
+                        .proceedToCheckoutOnShoppingCartPage()
+                        .enterOrderDetails();
+
+        Assertions.assertThat(confirmationPage.getOrderConfirmationDetalisSection()
+                .getConfirmationTitle()).containsIgnoringCase("Your order is confirmed");
+        
+    }
 
 }
