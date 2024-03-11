@@ -2,8 +2,8 @@ package pl.mmazur.pages;
 
 import com.microsoft.playwright.Page;
 import lombok.Getter;
-import pl.mmazur.pages.sections.TopMenuAndSearchSection;
-import pl.mmazur.pages.sections.TopNavigationSection;
+import pl.mmazur.pages.sections.common.TopMenuAndSearchSection;
+import pl.mmazur.pages.sections.common.TopNavigationSection;
 
 public class BasePage {
 
@@ -22,7 +22,7 @@ public class BasePage {
     }
 
     public SearchResultPage searchForProduct(String productName) {
-        return topMenuAndSearchSection.searchForProduct(productName);
+        return topMenuAndSearchSection.searchForProducts(productName);
     }
 
     public void setPageLanguageToEn(){

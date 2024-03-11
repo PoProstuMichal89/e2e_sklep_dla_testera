@@ -16,6 +16,6 @@ public class OrderConfirmationPage extends BasePage {
     public OrderConfirmationPage(Page page) {
         super(page);
         this.orderConfirmationDetalisSection = new OrderConfirmationDetalisSection(page);
-
     }
+
 }
